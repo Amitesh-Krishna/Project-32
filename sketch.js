@@ -1,10 +1,11 @@
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Constraint = Matter.Constraint;
+
 var released = false;
+
 function preload(){
 	polygon_img = loadImage("Hexagon.png")
 }
@@ -56,6 +57,7 @@ function setup() {
 	block25 = new Box(1000,340,40,50,"pink");
 	//pyramid 2 over
 
+	//hexagon
 	hexagon = Bodies.circle(100,200,22,{density:3,friction:0.2});
 	World.add(world,hexagon);
 
@@ -118,4 +120,11 @@ function mouseDragged(){
 
 function mouseReleased(){
 	sling.fly();
+}
+
+function keyPressed(){
+	if(keyCode == 32){
+		Body.setPosition(hexagon,{x:100,y:200});
+		sling.attach(hexagon);
+	}
 }

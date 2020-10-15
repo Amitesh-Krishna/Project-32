@@ -7,15 +7,24 @@ class Box {
       this.width = width;
       this.height = height;
       this.color = color;
+      this.visiblity = 255;
       World.add(world, this.body);
     }
     display(){
-      push();
-      var pos =this.body.position;
-      rectMode(CENTER);
-      fill(this.color);
-      strokeWeight(4);
-      rect(pos.x, pos.y, this.width, this.height);
-      pop();
+        if(this.body.speed < 3){
+            push();
+            var pos =this.body.position;
+            rectMode(CENTER);
+            fill(this.color);
+            strokeWeight(4);
+            rect(pos.x, pos.y, this.width, this.height);
+            pop();
+        }else{
+            World.remove(world,this.body);
+            this.visiblity -= 5;
+        }
+        push();
+        tint(255,this.visiblity);
+        pop();
     }
 };

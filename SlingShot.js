@@ -20,15 +20,15 @@ class SlingShot{
     }
 
     fly(){
-
         this.connection.bodyA = null;
+    }
 
+    attach(body){
+        this.connection.bodyA = body;
     }
 
     display(){
-
         if(this.connection.bodyA){
-
             line(this.posA.x,this.posA.y,this.posB.x,this.posB.y);
         }
     }
