@@ -26,5 +26,8 @@ class Box {
         push();
         tint(255,this.visiblity);
         pop();
+        if(this.visiblity < 0 && this.visiblity >-10){
+            score ++;
+        }
     }
 };

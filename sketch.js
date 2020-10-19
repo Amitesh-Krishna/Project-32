@@ -5,13 +5,16 @@ const Body = Matter.Body;
 const Constraint = Matter.Constraint;
 
 var released = false;
+var score = 0;
 
+var bgcolor;
 function preload(){
-	polygon_img = loadImage("Hexagon.png")
+	polygon_img = loadImage("Hexagon.png");
 }
 
 function setup() {
 	createCanvas(1200, 700);
+	setGameTime();
 
 	engine = Engine.create();
 	world = engine.world;
@@ -69,49 +72,56 @@ function setup() {
 }
 
 function draw() {
-  background(127.5);
+	if(bgcolor){
+		background(bgcolor);
+	}else{
+		background("grey");
+	}
+
   
-  stand1.display();
-  stand2.display();
-  //pyramid 1
-  //floor 1
-  block1.display();
-  block2.display();
-  block3.display();
-  block4.display();
-  block5.display();
-  block6.display();
-  block7.display();
-  //floor 2
-  block8.display();
-  block9.display();
-  block10.display();
-  block11.display();
-  block12.display();
-  //floor 3
-  block13.display();
-  block14.display();
-  block15.display();
-  //floor 4 
-  block16.display();
-  //pyramid 1 over
+	text("Score: "+score, 750, 40);
 
-  //pyramid 2
-  //floor 1
-  block17.display();
-  block18.display();
-  block19.display();
-  block20.display();
-  block21.display();
-  //floor 2
-  block22.display();
-  block23.display();
-  block24.display();
-  //floor 3
-  block25.display();
-  //pyramid 2 over
+	stand1.display();
+	stand2.display();
+	//pyramid 1
+	//floor 1
+	block1.display();
+	block2.display();
+	block3.display();
+	block4.display();
+	block5.display();
+	block6.display();
+	block7.display();
+	//floor 2
+	block8.display();
+	block9.display();
+	block10.display();
+	block11.display();
+	block12.display();
+	//floor 3
+	block13.display();
+	block14.display();
+	block15.display();
+	//floor 4 
+	block16.display();
+	//pyramid 1 over
 
-  image(polygon_img,hexagon.position.x,hexagon.position.y+10,40,40)
+	//pyramid 2
+	//floor 1
+	block17.display();
+	block18.display();
+	block19.display();
+	block20.display();
+	block21.display();
+	//floor 2
+	block22.display();
+	block23.display();
+	block24.display();
+	//floor 3
+	block25.display();
+	//pyramid 2 over
+
+	image(polygon_img,hexagon.position.x,hexagon.position.y+10,40,40);
 }
 
 function mouseDragged(){
@@ -127,4 +137,19 @@ function keyPressed(){
 		Body.setPosition(hexagon,{x:100,y:200});
 		sling.attach(hexagon);
 	}
+}
+
+async function setGameTime(){
+	fullfile = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+	fullJson = await fullfile.json();
+	dateTime = fullJson.datetime;
+	hour = dateTime.slice(11,13);
+
+	if(hour < 18 && hour > 6){
+		bg = color(255,255,0);
+	}else{
+		bg = color(50,70,100)
+	}
+
+	bgcolor = bg;
 }
