@@ -140,7 +140,7 @@ function keyPressed(){
 }
 
 async function setGameTime(){
-	fullfile = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+	fullfile = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
 	fullJson = await fullfile.json();
 	dateTime = fullJson.datetime;
 	hour = dateTime.slice(11,13);
