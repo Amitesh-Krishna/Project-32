@@ -146,7 +146,7 @@ async function setGameTime(){
 	hour = dateTime.slice(11,13);
 
 	if(hour < 18 && hour > 6){
-		bg = color(255,255,0);
+		bg = color(240,240,0);
 	}else{
 		bg = color(50,70,100)
 	}
